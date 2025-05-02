@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Gallery - Devansh Jhawar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -28,6 +30,7 @@
         .project-card {
             position: relative;
             overflow: hidden;
+            margin-bottom: 30px;
         }
         
         .project-info {
@@ -65,23 +68,25 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <div class="logo">
                 <a href="index.html#home">
                     <div class="logo-initials">DJ</div>
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#education">Education</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-            </ul>
-            <div class="hamburger">
+            <button class="navbar-toggler hamburger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto nav-links">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -97,39 +102,43 @@
     <!-- Projects Section -->
     <section class="projects">
         <div class="container projects-container">
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image-container">
-                        <img src="./todo-list.jpg" alt="To-Do List Android Application" class="project-image">
-                        <div class="project-overlay">
-                            <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
+            <div class="row g-4 projects-grid">
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="project-card h-100">
+                        <div class="project-image-container">
+                            <img src="./todo-list.jpg" alt="To-Do List Android Application" class="project-image">
+                            <div class="project-overlay">
+                                <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>To-Do List Android Application</h3>
-                        <p>A To-Do List Android Application which lets you categorize tasks and improve your productivity.</p>
-                        <div class="technologies">
-                            <span class="tech-badge">Android</span>
-                            <span class="tech-badge">Java</span>
-                            <span class="tech-badge">SQLite</span>
+                        <div class="project-info">
+                            <h3>To-Do List Android Application</h3>
+                            <p>A To-Do List Android Application which lets you categorize tasks and improve your productivity.</p>
+                            <div class="technologies mt-auto">
+                                <span class="tech-badge">Android</span>
+                                <span class="tech-badge">Java</span>
+                                <span class="tech-badge">SQLite</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <div class="project-image-container">
-                        <img src="./fineasy.jpg" alt="Personal Finance Management App" class="project-image">
-                        <div class="project-overlay">
-                            <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="project-card h-100">
+                        <div class="project-image-container">
+                            <img src="./fineasy.jpg" alt="Personal Finance Management App" class="project-image">
+                            <div class="project-overlay">
+                                <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Personal Finance Management App</h3>
-                        <p>A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.</p>
-                        <div class="technologies">
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">AI/ML</span>
+                        <div class="project-info">
+                            <h3>Personal Finance Management App</h3>
+                            <p>A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.</p>
+                            <div class="technologies mt-auto">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">AI/ML</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +146,7 @@
             
             <p class="coming-soon">More projects coming soon!</p>
             
-            <div class="view-all-container">
+            <div class="view-all-container text-center">
                 <a href="index.html" class="btn back-button">Back to Home</a>
             </div>
         </div>
@@ -149,6 +158,8 @@
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');

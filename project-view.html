@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details - Devansh Jhawar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -100,23 +102,25 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <div class="logo">
                 <a href="index.html#home">
                     <div class="logo-initials">DJ</div>
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#education">Education</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-            </ul>
-            <div class="hamburger">
+            <button class="navbar-toggler hamburger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto nav-links">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -138,33 +142,49 @@
                     <p>A task management application to improve productivity</p>
                 </div>
                 <div class="project-body">
-                    <img src="./todo-list.jpg" alt="To-Do List App" class="project-image">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="./todo-list.jpg" alt="To-Do List App" class="project-image">
+                        </div>
+                    </div>
                     
-                    <h3 class="section-title">Project Overview</h3>
-                    <p>This Android application helps users organize their tasks with categorization, priority levels, due dates, and reminders. It improves daily productivity by providing a clear view of pending tasks and completed items.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h3 class="section-title">Project Overview</h3>
+                            <p>This Android application helps users organize their tasks with categorization, priority levels, due dates, and reminders. It improves daily productivity by providing a clear view of pending tasks and completed items.</p>
+                        </div>
+                    </div>
                     
-                    <h3 class="section-title">Key Features</h3>
-                    <ul class="feature-list">
-                        <li>Task categorization by project or context</li>
-                        <li>Priority levels with visual indicators</li>
-                        <li>Due date setting with reminders</li>
-                        <li>Progress tracking with completion statistics</li>
-                        <li>Data backup and sync capabilities</li>
-                    </ul>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h3 class="section-title">Key Features</h3>
+                            <ul class="feature-list">
+                                <li>Task categorization by project or context</li>
+                                <li>Priority levels with visual indicators</li>
+                                <li>Due date setting with reminders</li>
+                                <li>Progress tracking with completion statistics</li>
+                                <li>Data backup and sync capabilities</li>
+                            </ul>
+                        </div>
+                    </div>
                     
-                    <h3 class="section-title">Technologies Used</h3>
-                    <div class="tech-stack">
-                        <div class="tech-badges">
-                            <span class="tech-badge">Android</span>
-                            <span class="tech-badge">Java</span>
-                            <span class="tech-badge">SQLite</span>
-                            <span class="tech-badge">Material Design</span>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h3 class="section-title">Technologies Used</h3>
+                            <div class="tech-stack">
+                                <div class="tech-badges">
+                                    <span class="tech-badge">Android</span>
+                                    <span class="tech-badge">Java</span>
+                                    <span class="tech-badge">SQLite</span>
+                                    <span class="tech-badge">Material Design</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="view-all-container">
+            <div class="view-all-container text-center">
                 <a href="project-gallery.html" class="btn back-button">Back to All Projects</a>
             </div>
         </div>
@@ -176,6 +196,8 @@
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');

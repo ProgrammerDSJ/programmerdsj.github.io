@@ -2,9 +2,8 @@
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
+// This event listener is now handled by Bootstrap
+// Just keep track of cursor glow effects
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -13,6 +12,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
+        
+        // Close mobile menu after clicking a link if it's open
+        if (window.innerWidth < 992) {
+            const bsCollapse = document.getElementById('navbarNav');
+            const collapse = bootstrap.Collapse.getInstance(bsCollapse);
+            if (collapse) collapse.hide();
+        }
     });
 });
 
@@ -87,14 +93,14 @@ const projects = [
     {
         title: 'To-Do List Android Application',
         description: 'A To-Do List Android Application which lets you categorize tasks and improve your productivity.',
-        image: './todo-list.png',
+        image: './todo-list.jpg',
         technologies: ['Android', 'Java', 'SQLite'],
         link: 'project-view.html'
     },
     {
         title: 'Personal Finance Management App',
         description: 'A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.',
-        image: './fineasy.png',
+        image: './fineasy.jpg',
         technologies: ['React', 'Node.js', 'AI/ML'],
         link: 'project-view.html'
     }
@@ -209,9 +215,19 @@ function renderProjects() {
     const projectsGrid = document.querySelector('.projects-grid');
     projectsGrid.innerHTML = ''; // Clear existing content
     
+    // Create a row container for Bootstrap grid
+    const projectRow = document.createElement('div');
+    projectRow.className = 'row g-4'; // g-4 adds spacing between cards
+    projectsGrid.appendChild(projectRow);
+    
     projects.forEach(project => {
+        // Create column for each project
+        const projectCol = document.createElement('div');
+        projectCol.className = 'col-md-6 col-lg-6 mb-4';
+        
+        // Create the project card with equal height
         const projectCard = document.createElement('div');
-        projectCard.className = 'project-card';
+        projectCard.className = 'project-card h-100';
         
         // Create tech badges HTML
         const techBadges = project.technologies.map(tech => 
@@ -228,12 +244,14 @@ function renderProjects() {
             <div class="project-info">
                 <h3>${project.title}</h3>
                 <p>${project.description}</p>
-                <div class="technologies">
+                <div class="technologies mt-auto">
                     ${techBadges}
                 </div>
             </div>
         `;
-        projectsGrid.appendChild(projectCard);
+        
+        projectCol.appendChild(projectCard);
+        projectRow.appendChild(projectCol);
     });
     
     // Add 'View All Projects' button
@@ -513,6 +531,23 @@ function addParticlesStyle() {
     `;
     document.head.appendChild(styleEl);
 }
+
+// Initialize the Bootstrap tooltips and popovers if any are used
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Bootstrap tooltips
+    if (typeof bootstrap !== 'undefined') {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Initialize Bootstrap popovers
+        const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+        popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl);
+        });
+    }
+});
 
 // Document ready function
 document.addEventListener('DOMContentLoaded', function() {
