@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Gallery - Devansh Jhawar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 8rem 0 3rem;
+            background: linear-gradient(135deg, var(--section-bg) 0%, var(--background) 100%);
+        }
+        .back-button {
+            margin-top: 2rem;
+        }
+        .projects-container {
+            padding: 2rem 0;
+        }
+        .coming-soon {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--light-text);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html#home">
+                    <div class="logo-initials">DJ</div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Project Gallery</h1>
+            <p>A collection of all my projects</p>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container projects-container">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="To-Do List Android Application" class="project-image">
+                    <div class="project-info">
+                        <h3>To-Do List Android Application</h3>
+                        <p>A To-Do List Android Application which lets you categorize tasks and improve your productivity.</p>
+                        <a href="project-view.html" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Personal Finance Management App" class="project-image">
+                    <div class="project-info">
+                        <h3>Personal Finance Management App</h3>
+                        <p>A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.</p>
+                        <a href="project-view.html" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="coming-soon">More projects coming soon!</p>
+            
+            <div class="view-all-container">
+                <a href="index.html" class="btn back-button">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Devansh Jhawar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 
