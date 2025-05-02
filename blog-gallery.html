@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Gallery - Devansh Jhawar</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -25,34 +23,29 @@
             padding: 2rem 0;
             color: var(--light-text);
         }
-        .blog-card {
-            margin-bottom: 30px;
-        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav>
         <div class="container">
             <div class="logo">
                 <a href="index.html#home">
                     <img src="Devansh YT.jpg" alt="Devansh Jhawar" class="logo-image">
                 </a>
             </div>
-            <button class="navbar-toggler hamburger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto nav-links">
-                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#education">Education</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#blog">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-                </ul>
             </div>
         </div>
     </nav>
@@ -68,39 +61,35 @@
     <!-- Blog Section -->
     <section class="blog">
         <div class="container blog-container">
-            <div class="row blog-grid">
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <div class="blog-card h-100">
-                        <div class="blog-content">
-                            <h3>Why AI Won't take your job and a person who uses AI will</h3>
-                            <p>An exploration of how AI is changing the job market and why human-AI collaboration is the future of work.</p>
-                            <div class="blog-meta">
-                                <span>March 15, 2024</span>
-                                <span>5 min read</span>
-                            </div>
-                            <a href="#" class="btn">Read More</a>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h3>Why AI Won't take your job and a person who uses AI will</h3>
+                        <p>An exploration of how AI is changing the job market and why human-AI collaboration is the future of work.</p>
+                        <div class="blog-meta">
+                            <span>March 15, 2024</span>
+                            <span>5 min read</span>
                         </div>
+                        <a href="#" class="btn">Read More</a>
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <div class="blog-card h-100">
-                        <div class="blog-content">
-                            <h3>Lessons I learned from the book "Time Management by Brian Tracy"</h3>
-                            <p>Key insights and practical time management strategies from Brian Tracy's influential book.</p>
-                            <div class="blog-meta">
-                                <span>March 10, 2024</span>
-                                <span>8 min read</span>
-                            </div>
-                            <a href="#" class="btn">Read More</a>
+                <div class="blog-card">
+                    <div class="blog-content">
+                        <h3>Lessons I learned from the book "Time Management by Brian Tracy"</h3>
+                        <p>Key insights and practical time management strategies from Brian Tracy's influential book.</p>
+                        <div class="blog-meta">
+                            <span>March 10, 2024</span>
+                            <span>8 min read</span>
                         </div>
+                        <a href="#" class="btn">Read More</a>
                     </div>
                 </div>
             </div>
             
             <p class="coming-soon">More blog posts coming soon!</p>
             
-            <div class="view-all-container text-center">
+            <div class="view-all-container">
                 <a href="index.html" class="btn back-button">Back to Home</a>
             </div>
         </div>
@@ -112,8 +101,6 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Mobile Navigation
         const hamburger = document.querySelector('.hamburger');

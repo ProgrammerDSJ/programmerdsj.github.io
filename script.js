@@ -2,8 +2,9 @@
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
-// This event listener is now handled by Bootstrap
-// Just keep track of cursor glow effects
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -12,13 +13,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
-        
-        // Close mobile menu after clicking a link if it's open
-        if (window.innerWidth < 992) {
-            const bsCollapse = document.getElementById('navbarNav');
-            const collapse = bootstrap.Collapse.getInstance(bsCollapse);
-            if (collapse) collapse.hide();
-        }
     });
 });
 
@@ -133,11 +127,6 @@ function renderProjects() {
     projectsGrid.innerHTML = ''; // Clear existing content
     
     projects.forEach(project => {
-        // Create column for each project
-        const projectCol = document.createElement('div');
-        projectCol.className = 'col-md-6 col-lg-6 mb-4';
-        
-        // Create the project card with equal height
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
         
@@ -156,9 +145,7 @@ function renderProjects() {
                 </div>
             </div>
         `;
-        
-        projectCol.appendChild(projectCard);
-        projectRow.appendChild(projectCol);
+        projectsGrid.appendChild(projectCard);
     });
     
     // Add 'View All Projects' button
@@ -434,23 +421,6 @@ function addParticlesStyle() {
     `;
     document.head.appendChild(styleEl);
 }
-
-// Initialize the Bootstrap tooltips and popovers if any are used
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Bootstrap tooltips
-    if (typeof bootstrap !== 'undefined') {
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-        
-        // Initialize Bootstrap popovers
-        const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-        popoverTriggerList.map(function (popoverTriggerEl) {
-            return new bootstrap.Popover(popoverTriggerEl);
-        });
-    }
-});
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
