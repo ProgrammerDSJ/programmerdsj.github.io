@@ -30,7 +30,6 @@
         .project-card {
             position: relative;
             overflow: hidden;
-            margin-bottom: 30px;
         }
         
         .project-info {
@@ -102,43 +101,39 @@
     <!-- Projects Section -->
     <section class="projects">
         <div class="container projects-container">
-            <div class="row g-4 projects-grid">
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <div class="project-card h-100">
-                        <div class="project-image-container">
-                            <img src="./todo-list.jpg" alt="To-Do List Android Application" class="project-image">
-                            <div class="project-overlay">
-                                <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./todo-list.jpg" alt="To-Do List Android Application" class="project-image">
+                        <div class="project-overlay">
+                            <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
                         </div>
-                        <div class="project-info">
-                            <h3>To-Do List Android Application</h3>
-                            <p>A To-Do List Android Application which lets you categorize tasks and improve your productivity.</p>
-                            <div class="technologies mt-auto">
-                                <span class="tech-badge">Android</span>
-                                <span class="tech-badge">Java</span>
-                                <span class="tech-badge">SQLite</span>
-                            </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>To-Do List Android Application</h3>
+                        <p>A To-Do List Android Application which lets you categorize tasks and improve your productivity.</p>
+                        <div class="technologies">
+                            <span class="tech-badge">Android</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">SQLite</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <div class="project-card h-100">
-                        <div class="project-image-container">
-                            <img src="./fineasy.jpg" alt="Personal Finance Management App" class="project-image">
-                            <div class="project-overlay">
-                                <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                            </div>
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./fineasy.jpg" alt="Personal Finance Management App" class="project-image">
+                        <div class="project-overlay">
+                            <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
                         </div>
-                        <div class="project-info">
-                            <h3>Personal Finance Management App</h3>
-                            <p>A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.</p>
-                            <div class="technologies mt-auto">
-                                <span class="tech-badge">React</span>
-                                <span class="tech-badge">Node.js</span>
-                                <span class="tech-badge">AI/ML</span>
-                            </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Personal Finance Management App</h3>
+                        <p>A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.</p>
+                        <div class="technologies">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">AI/ML</span>
                         </div>
                     </div>
                 </div>
@@ -167,28 +162,6 @@
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-        });
-
-        // Initialize project card hover effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const projectCards = document.querySelectorAll('.project-card');
-            
-            projectCards.forEach(card => {
-                const projectInfo = card.querySelector('.project-info');
-                
-                // Update gradient on mouse move
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const xPercent = Math.floor((x / rect.width) * 100);
-                    const yPercent = Math.floor((y / rect.height) * 100);
-                    
-                    projectInfo.style.setProperty('--x-position', `${xPercent}%`);
-                    projectInfo.style.setProperty('--y-position', `${yPercent}%`);
-                });
-            });
         });
     </script>
 </body>

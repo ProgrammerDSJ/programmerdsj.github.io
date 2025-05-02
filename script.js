@@ -22,58 +22,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Rotating subtitle text
-const rotatingTextElement = document.getElementById('rotating-text');
-const rotatingTexts = [
-    "An Entrepreneur",
-    "An Artist",
-    "A Fitness Enthusiast",
-    "Workaholic",
-    "Content Creator",
-    "A Developer"
-];
-let currentTextIndex = 0;
-
-function rotateText() {
-    // Start fade out animation
-    rotatingTextElement.style.animation = 'fadeOutUp 0.5s forwards';
-    
-    // After fade out completes, change text and fade in
-    setTimeout(() => {
-        currentTextIndex = (currentTextIndex + 1) % rotatingTexts.length;
-        rotatingTextElement.textContent = rotatingTexts[currentTextIndex];
-        rotatingTextElement.style.animation = 'fadeInUp 0.5s forwards';
-    }, 500);
-}
-
-// Start rotation every 0.5 seconds
-setInterval(rotateText, 1000);
-
 // Skills Data - Updated with categories and proficiency levels
 const skillsData = {
     "Languages & Core": [
         { name: "Python", icon: "fab fa-python", color: "#3776AB", level: "expert" },
-        { name: "R", icon: "fas fa-code", color: "#276DC3", level: "intermediate" },
-        { name: "Data Science", icon: "fas fa-chart-line", color: "#00BFFF", level: "advanced" },
-        { name: "Machine Learning", icon: "fas fa-brain", color: "#FF6B6B", level: "advanced" }
+        { name: "JavaScript", icon: "fab fa-js", color: "#F7DF1E", level: "advanced" },
+        { name: "TypeScript", icon: "fab fa-js", color: "#007ACC", level: "advanced" },
+        { name: "Java", icon: "fab fa-java", color: "#007396", level: "intermediate" }
     ],
-    "Python Libraries for Data Science": [
-        { name: "NumPy", iconType: "image", iconSrc: "https://numpy.org/images/logo.svg", color: "#4FACFE", level: "advanced" },
-        { name: "Sci-kit Learn", iconType: "image", iconSrc: "https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png", color: "#F89406", level: "intermediate" },
-        { name: "TensorFlow", iconType: "image", iconSrc: "https://www.tensorflow.org/images/tf_logo_social.png", color: "#FF6F00", level: "intermediate" },
-        { name: "PyTorch", icon: "fas fa-fire", color: "#EE4C2C", level: "intermediate" }
+    "Frontend & UI": [
+        { name: "React", icon: "fab fa-react", color: "#61DAFB", level: "advanced" },
+        { name: "Next.js", icon: "fab fa-react", color: "#000000", level: "advanced" },
+        { name: "Tailwind CSS", icon: "fab fa-css3-alt", color: "#38B2AC", level: "advanced" },
+        { name: "HTML5", icon: "fab fa-html5", color: "#E34F26", level: "expert" }
     ],
     "Backend & Database": [
         { name: "Node.js", icon: "fab fa-node-js", color: "#339933", level: "advanced" },
-        { name: "Firebase", icon: "fas fa-database", color: "#FFCA28", level: "intermediate" },
-        { name: "MongoDB", icon: "fas fa-database", color: "#47A248", level: "advanced" },
-        { name: "MySQL", icon: "fas fa-database", color: "#4479A1", level: "advanced" }
-    ],
-    "Tools & Technologies": [
-        { name: "Jupyter Notebooks", iconType: "image", iconSrc: "https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg", color: "#F37626", level: "expert" },
-        { name: "Git", icon: "fab fa-git-alt", color: "#F05032", level: "advanced" },
-        { name: "Linux", icon: "fab fa-linux", color: "#FCC624", level: "intermediate" },
-        { name: "Supabase", icon: "fas fa-server", color: "#3ECF8E", level: "intermediate" }
+        { name: "Django", icon: "fab fa-python", color: "#092E20", level: "advanced" },
+        { name: "MongoDB", icon: "fas fa-database", color: "#47A248", level: "intermediate" },
+        { name: "PostgreSQL", icon: "fas fa-database", color: "#336791", level: "intermediate" }
     ]
 };
 
@@ -93,14 +60,14 @@ const projects = [
     {
         title: 'To-Do List Android Application',
         description: 'A To-Do List Android Application which lets you categorize tasks and improve your productivity.',
-        image: './todo-list.jpg',
+        image: './todo-list.png',
         technologies: ['Android', 'Java', 'SQLite'],
         link: 'project-view.html'
     },
     {
         title: 'Personal Finance Management App',
         description: 'A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.',
-        image: './fineasy.jpg',
+        image: './fineasy.png',
         technologies: ['React', 'Node.js', 'AI/ML'],
         link: 'project-view.html'
     }
@@ -123,9 +90,8 @@ function renderSkills() {
         
         // Set icon based on category
         let categoryIcon = 'fas fa-code';
-        if (category.includes('Python Libraries')) categoryIcon = 'fab fa-python';
+        if (category.includes('Frontend')) categoryIcon = 'fas fa-desktop';
         if (category.includes('Backend')) categoryIcon = 'fas fa-server';
-        if (category.includes('Tools')) categoryIcon = 'fas fa-toolbox';
         
         categoryHeader.innerHTML = `<i class="${categoryIcon}"></i> ${category}`;
         categorySection.appendChild(categoryHeader);
@@ -138,20 +104,11 @@ function renderSkills() {
         skills.forEach(skill => {
             const skillCard = document.createElement('div');
             skillCard.className = `skill-card ${skill.level}`;
-            skillCard.dataset.level = skill.level;
-            
-            // Create icon HTML based on icon type
-            let iconHTML = '';
-            if (skill.iconType === 'image') {
-                iconHTML = `<img src="${skill.iconSrc}" alt="${skill.name} logo" style="max-width: 100%; max-height: 100%;">`;
-            } else {
-                iconHTML = `<i class="${skill.icon}"></i>`;
-            }
             
             // Create skill content
             skillCard.innerHTML = `
                 <div class="skill-icon" style="color: ${skill.color}">
-                    ${iconHTML}
+                    <i class="${skill.icon}"></i>
                 </div>
                 <div class="skill-content">
                     <div class="skill-name">${skill.name}</div>
@@ -168,57 +125,12 @@ function renderSkills() {
         categorySection.appendChild(skillsGrid);
         skillsContainer.appendChild(categorySection);
     }
-    
-    // Setup cursor color change on skill card hover
-    setupSkillCardCursorEffects();
-}
-
-// Function to setup cursor effects for skill cards
-function setupSkillCardCursorEffects() {
-    const cursor = document.querySelector('.cursor-glow');
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    skillCards.forEach(card => {
-        const level = card.dataset.level;
-        
-        card.addEventListener('mouseenter', () => {
-            cursor.classList.remove('green', 'blue', 'red', 'yellow');
-            
-            // Set cursor color based on skill level
-            switch(level) {
-                case 'beginner':
-                    cursor.classList.add('red');
-                    break;
-                case 'intermediate':
-                    cursor.classList.add('yellow');
-                    break;
-                case 'advanced':
-                    cursor.classList.add('blue');
-                    break;
-                case 'expert':
-                    cursor.classList.add('green');
-                    break;
-                default:
-                    cursor.classList.add('green');
-            }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            cursor.classList.remove('red', 'yellow', 'blue');
-            cursor.classList.add('green'); // Default back to green
-        });
-    });
 }
 
 // Render Projects
 function renderProjects() {
     const projectsGrid = document.querySelector('.projects-grid');
     projectsGrid.innerHTML = ''; // Clear existing content
-    
-    // Create a row container for Bootstrap grid
-    const projectRow = document.createElement('div');
-    projectRow.className = 'row g-4'; // g-4 adds spacing between cards
-    projectsGrid.appendChild(projectRow);
     
     projects.forEach(project => {
         // Create column for each project
@@ -227,7 +139,7 @@ function renderProjects() {
         
         // Create the project card with equal height
         const projectCard = document.createElement('div');
-        projectCard.className = 'project-card h-100';
+        projectCard.className = 'project-card';
         
         // Create tech badges HTML
         const techBadges = project.technologies.map(tech => 
@@ -235,16 +147,11 @@ function renderProjects() {
         ).join('');
         
         projectCard.innerHTML = `
-            <div class="project-image-container">
-                <img src="${project.image}" alt="${project.title}" class="project-image">
-                <div class="project-overlay">
-                    <a href="${project.link}" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
+            <img src="${project.image}" alt="${project.title}" class="project-image">
             <div class="project-info">
                 <h3>${project.title}</h3>
                 <p>${project.description}</p>
-                <div class="technologies mt-auto">
+                <div class="technologies">
                     ${techBadges}
                 </div>
             </div>
@@ -259,54 +166,9 @@ function renderProjects() {
     const viewAllContainer = document.createElement('div');
     viewAllContainer.className = 'view-all-container';
     viewAllContainer.innerHTML = `
-        <a href="project-gallery.html" class="btn view-all-btn">See All Projects <i class="fas fa-chevron-right"></i></a>
+        <a href="project-gallery.html" class="btn">View All Projects</a>
     `;
     projectsSection.appendChild(viewAllContainer);
-    
-    // Initialize border gradient effects
-    initProjectCardGradients();
-}
-
-// Initialize project card gradient effects
-function initProjectCardGradients() {
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(card => {
-        const projectInfo = card.querySelector('.project-info');
-        
-        // Start with animated gradient
-        card.classList.add('animated-gradient');
-        
-        // Update gradient on mouse move
-        card.addEventListener('mousemove', (e) => {
-            // Remove automatic animation when user interacts
-            card.classList.remove('animated-gradient');
-            
-            // Get cursor position relative to the card
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the card
-            const y = e.clientY - rect.top;  // y position within the card
-            
-            // Calculate percentage positions
-            const xPercent = Math.floor((x / rect.width) * 100);
-            const yPercent = Math.floor((y / rect.height) * 100);
-            
-            // Update the gradient position based on cursor
-            const infoBox = card.querySelector('.project-info');
-            
-            // Apply dynamic gradient - invert X position for more natural feel
-            const mappedX = 100 - xPercent;
-            infoBox.style.setProperty('--x-position', `${mappedX}%`);
-            infoBox.style.setProperty('--y-position', `${yPercent}%`);
-        });
-        
-        // Reset to animated gradient when mouse leaves
-        card.addEventListener('mouseleave', () => {
-            card.classList.add('animated-gradient');
-            projectInfo.style.removeProperty('--x-position');
-            projectInfo.style.removeProperty('--y-position');
-        });
-    });
 }
 
 // Contact Form Submission
@@ -337,8 +199,6 @@ function initCursorGlow() {
     // Initial state
     setTimeout(() => {
         cursor.style.opacity = '1';
-        // Set default color to green
-        cursor.classList.add('green');
     }, 1000);
     
     // Follow cursor
@@ -356,9 +216,77 @@ function initCursorGlow() {
             cursor.style.opacity = '1';
         }
         
-        // Check if cursor is inside social icon first (higher priority)
-        let currentInsideSocialIcon = false;
+        // Check if cursor is inside name box
+        if (nameBox) {
+            const boxRect = nameBox.getBoundingClientRect();
+            
+            if (
+                mouseX >= boxRect.left &&
+                mouseX <= boxRect.right &&
+                mouseY >= boxRect.top &&
+                mouseY <= boxRect.bottom
+            ) {
+                if (!isInsideNameBox) {
+                    isInsideNameBox = true;
+                    cursor.classList.add('blue');
+                    cursor.classList.remove('red');
+                    nameHighlight.style.opacity = '1';
+                    
+                    // Update highlight position relative to mouse
+                    const relativeX = mouseX - boxRect.left;
+                    const relativeY = mouseY - boxRect.top;
+                    const centerX = boxRect.width / 2;
+                    const centerY = boxRect.height / 2;
+                    
+                    // Calculate distance from center (normalized)
+                    const distX = (relativeX - centerX) / centerX;
+                    const distY = (relativeY - centerY) / centerY;
+                    
+                    // Move highlight slightly based on mouse position
+                    nameHighlight.style.background = `radial-gradient(
+                        ellipse at ${50 + distX * 20}% ${50 + distY * 20}%, 
+                        rgba(96, 165, 250, 0.4) 0%, 
+                        transparent 80%
+                    )`;
+                    
+                    if (!cursorSizeSmall) {
+                        cursor.style.width = '100px';
+                        cursor.style.height = '100px';
+                    }
+                } else {
+                    // Continue updating highlight position
+                    const relativeX = mouseX - boxRect.left;
+                    const relativeY = mouseY - boxRect.top;
+                    const centerX = boxRect.width / 2;
+                    const centerY = boxRect.height / 2;
+                    
+                    // Calculate distance from center (normalized)
+                    const distX = (relativeX - centerX) / centerX;
+                    const distY = (relativeY - centerY) / centerY;
+                    
+                    // Move highlight slightly based on mouse position
+                    nameHighlight.style.background = `radial-gradient(
+                        ellipse at ${50 + distX * 20}% ${50 + distY * 20}%, 
+                        rgba(96, 165, 250, 0.4) 0%, 
+                        transparent 80%
+                    )`;
+                }
+            } else {
+                if (isInsideNameBox) {
+                    isInsideNameBox = false;
+                    cursor.classList.remove('blue');
+                    nameHighlight.style.opacity = '0';
+                    
+                    if (!cursorSizeSmall && !isInsideSocialIcon) {
+                        cursor.style.width = '100px';
+                        cursor.style.height = '100px';
+                    }
+                }
+            }
+        }
         
+        // Check if cursor is inside any social icon
+        let foundSocialIcon = false;
         socialLinks.forEach(link => {
             const linkRect = link.getBoundingClientRect();
             
@@ -368,79 +296,54 @@ function initCursorGlow() {
                 mouseY >= linkRect.top &&
                 mouseY <= linkRect.bottom
             ) {
-                currentInsideSocialIcon = true;
+                foundSocialIcon = true;
                 if (!isInsideSocialIcon) {
                     isInsideSocialIcon = true;
-                    // Remove ALL color classes before adding red
-                    cursor.classList.remove('green', 'blue', 'yellow', 'red');
                     cursor.classList.add('red');
+                    cursor.classList.remove('blue');
+                    
+                    if (!cursorSizeSmall) {
+                        cursor.style.width = '100px';
+                        cursor.style.height = '100px';
+                    }
                 }
             }
         });
         
-        if (!currentInsideSocialIcon && isInsideSocialIcon) {
+        if (!foundSocialIcon && isInsideSocialIcon) {
             isInsideSocialIcon = false;
             cursor.classList.remove('red');
             
-            // Restore appropriate color
-            if (isInsideNameBox) {
-                cursor.classList.add('blue');
-            } else {
-                cursor.classList.add('green');
-            }
-        }
-        
-        // Only check name box if not inside social icon
-        if (!isInsideSocialIcon) {
-            if (nameBox) {
-                const boxRect = nameBox.getBoundingClientRect();
-                
-                if (
-                    mouseX >= boxRect.left &&
-                    mouseX <= boxRect.right &&
-                    mouseY >= boxRect.top &&
-                    mouseY <= boxRect.bottom
-                ) {
-                    if (!isInsideNameBox) {
-                        isInsideNameBox = true;
-                        nameHighlight.style.opacity = '0.5';
-                        cursor.classList.remove('green', 'yellow', 'red');
-                        cursor.classList.add('blue');
-                    }
-                } else {
-                    if (isInsideNameBox) {
-                        isInsideNameBox = false;
-                        nameHighlight.style.opacity = '0';
-                        cursor.classList.remove('blue');
-                        cursor.classList.add('green');
-                    }
-                }
+            if (!cursorSizeSmall && !isInsideNameBox) {
+                cursor.style.width = '100px';
+                cursor.style.height = '100px';
             }
         }
     });
     
-    // Handle cursor size
+    // Hide on mouse leave
+    document.addEventListener('mouseleave', () => {
+        isActive = false;
+        cursor.style.opacity = '0';
+    });
+    
+    // Shrink on mouse down
     document.addEventListener('mousedown', () => {
-        if (!cursorSizeSmall) {
-            cursor.style.width = '80px';
-            cursor.style.height = '80px';
-            cursorSizeSmall = true;
-        }
+        cursorSizeSmall = true;
+        cursor.style.width = '80px';
+        cursor.style.height = '80px';
     });
     
+    // Return to normal on mouse up
     document.addEventListener('mouseup', () => {
-        if (cursorSizeSmall) {
+        cursorSizeSmall = false;
+        
+        if (isInsideNameBox || isInsideSocialIcon) {
             cursor.style.width = '100px';
             cursor.style.height = '100px';
-            cursorSizeSmall = false;
-        }
-    });
-    
-    // Handle cursor hide when it leaves the window
-    document.addEventListener('mouseout', (e) => {
-        if (e.relatedTarget === null) {
-            isActive = false;
-            cursor.style.opacity = '0';
+        } else {
+            cursor.style.width = '100px';
+            cursor.style.height = '100px';
         }
     });
 }
@@ -549,44 +452,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Document ready function
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize functions
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
     renderSkills();
     renderProjects();
     initCursorGlow();
-    
-    // Set initial cursor color to green
-    const cursor = document.querySelector('.cursor-glow');
-    if (cursor) {
-        cursor.classList.add('green');
-    }
-    
-    // Run initial text rotation to set the first rotating text
-    if (rotatingTextElement) {
-        rotatingTextElement.textContent = rotatingTexts[0];
-        rotatingTextElement.style.animation = 'fadeInUp 0.5s forwards';
-    }
-    
-    // Initialize other elements
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Here you would typically send the data to a server
-            console.log('Form submitted:', data);
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        });
-    }
-    
-    // Initialize discover more button
     initDiscoverMore();
-    
-    // Add particles to hero section
-    addHeroParticles();
     addParticlesStyle();
+    addHeroParticles();
 }); 
