@@ -6,6 +6,43 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
+// Rotating text animation with CSS
+function initRotatingText() {
+    // Ensure we only initialize once
+    const rotatingTextWrapper = document.querySelector('.rotating-text-wrapper');
+    rotatingTextWrapper.innerHTML = ''; // Clear any existing content
+    
+    const roles = [
+        "An Entrepreneur",
+        "An Artist",
+        "A Fitness Freak",
+        "A Content Creator",
+        "A Developer"
+    ];
+    
+    // Calculate total animation duration for proper loop
+    const animationDuration = roles.length * 0.75;
+    
+    // Create individual text elements with proper animation delays
+    roles.forEach((role, index) => {
+        const textElement = document.createElement('span');
+        textElement.className = 'rotating-text-item';
+        textElement.textContent = role;
+        
+        // Set animation delay (0.75s intervals) for smooth sequence
+        const delay = index * 0.75;
+        textElement.style.animationDelay = `${delay}s`;
+        
+        // Set the same total duration for all elements to create a perfect loop
+        textElement.style.animationDuration = `${animationDuration}s`;
+        
+        rotatingTextWrapper.appendChild(textElement);
+    });
+    
+    // Log for debugging
+    console.log("Rotating text initialized with " + roles.length + " items");
+}
+
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -430,4 +467,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initDiscoverMore();
     addParticlesStyle();
     addHeroParticles();
+    initRotatingText();
 }); 

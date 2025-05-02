@@ -221,7 +221,7 @@ nav .container {
 .name-box {
     position: relative;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 200px 10px 20px;
     background: rgba(30, 58, 138, 0.05);
     border: 1px solid rgba(96, 165, 250, 0.2);
     border-radius: 8px;
@@ -290,11 +290,12 @@ nav .container {
 
 .name-box h1 {
     font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
     margin: 0;
-    color: var(--text-color);
+    color: white;
     position: relative;
-    z-index: 3;
-    text-align: left;
+    z-index: 2;
 }
 
 .hero .subtitle {
@@ -306,10 +307,53 @@ nav .container {
     text-align: left;
 }
 
+/* Rotating Text Styles */
+.rotating-text-wrapper {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 1rem 0 2rem;
+    height: 2.2em;
+    position: relative;
+    overflow: hidden;
+}
+
+.rotating-text-item {
+    display: block;
+    position: absolute;
+    color: #5eead4; /* Same green as used in hero-greeting */
+    font-weight: 500;
+    left: 0;
+    animation-name: textFade;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes textFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    5% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    20%, 100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Hero Social Links */
 .hero-social {
     display: flex;
     gap: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .hero-social a {
