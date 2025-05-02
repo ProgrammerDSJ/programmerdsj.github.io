@@ -144,6 +144,27 @@ nav .container {
     box-shadow: 0 0 30px var(--red-glow);
 }
 
+/* Skill level cursor glow effects */
+.cursor-glow.beginner-glow {
+    background: radial-gradient(circle, rgba(255, 107, 107, 0.9) 0%, rgba(255, 107, 107, 0) 70%);
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.7);
+}
+
+.cursor-glow.intermediate-glow {
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.9) 0%, rgba(255, 193, 7, 0) 70%);
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.7);
+}
+
+.cursor-glow.advanced-glow {
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.9) 0%, rgba(79, 172, 254, 0) 70%);
+    box-shadow: 0 0 30px rgba(79, 172, 254, 0.7);
+}
+
+.cursor-glow.expert-glow {
+    background: radial-gradient(circle, rgba(0, 200, 83, 0.9) 0%, rgba(0, 200, 83, 0) 70%);
+    box-shadow: 0 0 30px rgba(0, 200, 83, 0.7);
+}
+
 /* Hero Section - Enhanced */
 .hero {
     height: 100vh;
@@ -815,13 +836,87 @@ h2 {
     background: rgba(15, 23, 42, 0.5);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     margin-bottom: 3rem;
     overflow: hidden;
+    border: 1px solid rgba(96, 165, 250, 0.1);
+}
+
+.skills-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(79, 172, 254, 0.25) 0%, 
+        rgba(0, 242, 254, 0.15) 25%, 
+        rgba(94, 234, 212, 0.2) 50%, 
+        rgba(16, 185, 129, 0.15) 75%, 
+        rgba(59, 130, 246, 0.25) 100%);
+    background-size: 200% 200%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.skills-category::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(94, 234, 212, 0.4) 0%, 
+        rgba(79, 172, 254, 0.3) 30%, 
+        rgba(96, 165, 250, 0.2) 60%, 
+        transparent 80%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+    z-index: -1;
 }
 
 .skills-category:hover {
     transform: translateY(-5px);
+    border-color: rgba(94, 234, 212, 0.4);
+    box-shadow: 0 12px 30px rgba(94, 234, 212, 0.2), 0 4px 10px rgba(96, 165, 250, 0.3);
+}
+
+.skills-category:hover::before {
+    opacity: 1;
+    animation: gradientFlow 6s linear infinite;
+}
+
+.skills-category:hover::after {
+    opacity: 0.8;
+    transform: scale(1);
+    animation: pulseGlow 4s infinite alternate;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
 }
 
 .category-header {
@@ -832,10 +927,13 @@ h2 {
     font-size: 1.2rem;
     text-shadow: 0 0 10px rgba(94, 234, 212, 0.3);
     position: relative;
+    padding-bottom: 0.5rem;
 }
 
 .category-header i {
     margin-right: 0.75rem;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 5px rgba(94, 234, 212, 0.5));
 }
 
 .category-header::after {
@@ -843,11 +941,21 @@ h2 {
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: 50px;
-    height: 2px;
-    background: var(--gradient-1);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #5eead4, #4facfe, #00f2fe);
     border-radius: 2px;
-    box-shadow: 0 0 8px rgba(94, 234, 212, 0.5);
+    box-shadow: 0 0 12px rgba(94, 234, 212, 0.5);
+    animation: gradientShift 3s infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 .skills-grid {
@@ -871,6 +979,7 @@ h2 {
     width: calc(25% - 1.2rem);
     min-width: 200px;
     backdrop-filter: blur(10px);
+    cursor: pointer;
 }
 
 .skill-card::before {
@@ -920,21 +1029,25 @@ h2 {
 .beginner:hover::before {
     background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(240, 128, 128, 0.15));
     box-shadow: 0 0 25px rgba(255, 107, 107, 0.5);
+    border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 .intermediate:hover::before {
     background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 235, 59, 0.15));
     box-shadow: 0 0 25px rgba(255, 193, 7, 0.5);
+    border: 1px solid rgba(255, 193, 7, 0.3);
 }
 
 .advanced:hover::before {
     background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(0, 242, 254, 0.15));
     box-shadow: 0 0 25px rgba(79, 172, 254, 0.5);
+    border: 1px solid rgba(79, 172, 254, 0.3);
 }
 
 .expert:hover::before {
     background: linear-gradient(135deg, rgba(0, 200, 83, 0.15), rgba(105, 240, 174, 0.15));
     box-shadow: 0 0 25px rgba(0, 200, 83, 0.5);
+    border: 1px solid rgba(0, 200, 83, 0.3);
 }
 
 .skill-icon {

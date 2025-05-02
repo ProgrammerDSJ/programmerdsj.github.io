@@ -219,6 +219,8 @@ function initCursorGlow() {
     let cursorSizeSmall = false;
     let isInsideNameBox = false;
     let isInsideSocialIcon = false;
+    let isInsideSkillCard = false;
+    let currentSkillLevel = '';
     
     // Initial state
     setTimeout(() => {
@@ -254,6 +256,10 @@ function initCursorGlow() {
                     isInsideNameBox = true;
                     cursor.classList.add('blue');
                     cursor.classList.remove('red');
+                    cursor.classList.remove('beginner-glow');
+                    cursor.classList.remove('intermediate-glow');
+                    cursor.classList.remove('advanced-glow');
+                    cursor.classList.remove('expert-glow');
                     nameHighlight.style.opacity = '1';
                     
                     // Update highlight position relative to mouse
@@ -301,7 +307,7 @@ function initCursorGlow() {
                     cursor.classList.remove('blue');
                     nameHighlight.style.opacity = '0';
                     
-                    if (!cursorSizeSmall && !isInsideSocialIcon) {
+                    if (!cursorSizeSmall && !isInsideSocialIcon && !isInsideSkillCard) {
                         cursor.style.width = '100px';
                         cursor.style.height = '100px';
                     }
@@ -325,6 +331,10 @@ function initCursorGlow() {
                     isInsideSocialIcon = true;
                     cursor.classList.add('red');
                     cursor.classList.remove('blue');
+                    cursor.classList.remove('beginner-glow');
+                    cursor.classList.remove('intermediate-glow');
+                    cursor.classList.remove('advanced-glow');
+                    cursor.classList.remove('expert-glow');
                     
                     if (!cursorSizeSmall) {
                         cursor.style.width = '100px';
@@ -338,7 +348,65 @@ function initCursorGlow() {
             isInsideSocialIcon = false;
             cursor.classList.remove('red');
             
-            if (!cursorSizeSmall && !isInsideNameBox) {
+            if (!cursorSizeSmall && !isInsideNameBox && !isInsideSkillCard) {
+                cursor.style.width = '100px';
+                cursor.style.height = '100px';
+            }
+        }
+        
+        // Check if cursor is inside any skill card
+        let foundSkillCard = false;
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        skillCards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            
+            if (
+                mouseX >= cardRect.left &&
+                mouseX <= cardRect.right &&
+                mouseY >= cardRect.top &&
+                mouseY <= cardRect.bottom
+            ) {
+                foundSkillCard = true;
+                
+                // Get skill level from class
+                const skillLevel = card.classList.contains('beginner') ? 'beginner' :
+                                   card.classList.contains('intermediate') ? 'intermediate' :
+                                   card.classList.contains('advanced') ? 'advanced' :
+                                   card.classList.contains('expert') ? 'expert' : '';
+                
+                if (!isInsideSkillCard || currentSkillLevel !== skillLevel) {
+                    isInsideSkillCard = true;
+                    currentSkillLevel = skillLevel;
+                    
+                    // Reset other cursor classes
+                    cursor.classList.remove('blue');
+                    cursor.classList.remove('red');
+                    cursor.classList.remove('beginner-glow');
+                    cursor.classList.remove('intermediate-glow');
+                    cursor.classList.remove('advanced-glow');
+                    cursor.classList.remove('expert-glow');
+                    
+                    // Add appropriate class based on skill level
+                    cursor.classList.add(`${skillLevel}-glow`);
+                    
+                    if (!cursorSizeSmall) {
+                        cursor.style.width = '120px';
+                        cursor.style.height = '120px';
+                    }
+                }
+            }
+        });
+        
+        if (!foundSkillCard && isInsideSkillCard) {
+            isInsideSkillCard = false;
+            currentSkillLevel = '';
+            cursor.classList.remove('beginner-glow');
+            cursor.classList.remove('intermediate-glow');
+            cursor.classList.remove('advanced-glow');
+            cursor.classList.remove('expert-glow');
+            
+            if (!cursorSizeSmall && !isInsideNameBox && !isInsideSocialIcon) {
                 cursor.style.width = '100px';
                 cursor.style.height = '100px';
             }
@@ -365,6 +433,9 @@ function initCursorGlow() {
         if (isInsideNameBox || isInsideSocialIcon) {
             cursor.style.width = '100px';
             cursor.style.height = '100px';
+        } else if (isInsideSkillCard) {
+            cursor.style.width = '120px';
+            cursor.style.height = '120px';
         } else {
             cursor.style.width = '100px';
             cursor.style.height = '100px';
