@@ -13,11 +13,88 @@
             background: linear-gradient(135deg, var(--section-bg) 0%, var(--background) 100%);
         }
         .content-container {
+            max-width: 900px;
+            margin: 0 auto;
             padding: 3rem 0;
-            text-align: center;
+        }
+        .project-detail-card {
+            background: rgba(31, 41, 55, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+        .project-header {
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        .project-header h2 {
+            color: #5eead4;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .project-header p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+        .project-body {
+            padding: 2rem;
+        }
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), #5eead4);
+            border-radius: 2px;
+        }
+        .project-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        .feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .feature-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #5eead4;
+            font-size: 1.2rem;
+        }
+        .tech-stack {
+            margin-bottom: 2rem;
+        }
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
         }
         .back-button {
             margin-top: 2rem;
+            display: inline-block;
         }
     </style>
 </head>
@@ -48,16 +125,47 @@
     <header class="page-header">
         <div class="container">
             <h1>Project Details</h1>
-            <p>Project information coming soon</p>
+            <p>In-depth look at my projects</p>
         </div>
     </header>
 
     <!-- Content Section -->
     <section>
         <div class="container content-container">
-            <p>This project page is currently under development.</p>
+            <div class="project-detail-card">
+                <div class="project-header">
+                    <h2>To-Do List Android Application</h2>
+                    <p>A task management application to improve productivity</p>
+                </div>
+                <div class="project-body">
+                    <img src="./todo-list.jpg" alt="To-Do List App" class="project-image">
+                    
+                    <h3 class="section-title">Project Overview</h3>
+                    <p>This Android application helps users organize their tasks with categorization, priority levels, due dates, and reminders. It improves daily productivity by providing a clear view of pending tasks and completed items.</p>
+                    
+                    <h3 class="section-title">Key Features</h3>
+                    <ul class="feature-list">
+                        <li>Task categorization by project or context</li>
+                        <li>Priority levels with visual indicators</li>
+                        <li>Due date setting with reminders</li>
+                        <li>Progress tracking with completion statistics</li>
+                        <li>Data backup and sync capabilities</li>
+                    </ul>
+                    
+                    <h3 class="section-title">Technologies Used</h3>
+                    <div class="tech-stack">
+                        <div class="tech-badges">
+                            <span class="tech-badge">Android</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">SQLite</span>
+                            <span class="tech-badge">Material Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="view-all-container">
-                <a href="index.html#projects" class="btn back-button">Back to Projects</a>
+                <a href="project-gallery.html" class="btn back-button">Back to All Projects</a>
             </div>
         </div>
     </section>

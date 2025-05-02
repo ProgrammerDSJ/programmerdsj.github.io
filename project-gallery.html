@@ -23,6 +23,44 @@
             padding: 2rem 0;
             color: var(--light-text);
         }
+        
+        /* Ensure project card borders are visible */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-info {
+            --x-position: 50%;
+            --y-position: 50%;
+            --gradient-position: var(--x-position) var(--y-position);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-info::after {
+            display: none;
+        }
+        
+        .project-info::before {
+            display: none;
+        }
+        
+        .project-card.animated-gradient .project-info::after {
+            animation: gradientBorderMove 3s ease infinite;
+        }
+        
+        @keyframes gradientBorderMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -61,20 +99,38 @@
         <div class="container projects-container">
             <div class="projects-grid">
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200" alt="To-Do List Android Application" class="project-image">
+                    <div class="project-image-container">
+                        <img src="./todo-list.jpg" alt="To-Do List Android Application" class="project-image">
+                        <div class="project-overlay">
+                            <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                     <div class="project-info">
                         <h3>To-Do List Android Application</h3>
                         <p>A To-Do List Android Application which lets you categorize tasks and improve your productivity.</p>
-                        <a href="project-view.html" class="btn">View Project</a>
+                        <div class="technologies">
+                            <span class="tech-badge">Android</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">SQLite</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="project-card">
-                    <img src="https://via.placeholder.com/300x200" alt="Personal Finance Management App" class="project-image">
+                    <div class="project-image-container">
+                        <img src="./fineasy.jpg" alt="Personal Finance Management App" class="project-image">
+                        <div class="project-overlay">
+                            <a href="project-view.html" class="view-project-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                     <div class="project-info">
                         <h3>Personal Finance Management App</h3>
                         <p>A webapp that studies your spending patterns and uses AI to recommend ways to reach your financial goals efficiently.</p>
-                        <a href="project-view.html" class="btn">View Project</a>
+                        <div class="technologies">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">AI/ML</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,6 +156,28 @@
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Initialize project card hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                const projectInfo = card.querySelector('.project-info');
+                
+                // Update gradient on mouse move
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const xPercent = Math.floor((x / rect.width) * 100);
+                    const yPercent = Math.floor((y / rect.height) * 100);
+                    
+                    projectInfo.style.setProperty('--x-position', `${xPercent}%`);
+                    projectInfo.style.setProperty('--y-position', `${yPercent}%`);
+                });
+            });
         });
     </script>
 </body>
